@@ -1,3 +1,64 @@
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissor = document.querySelector('.scissor')
+const results = document.querySelector('.results')
+let winner = 0 
+let humanScore = 0 ;
+let computerScore = 0;
+
+rock.addEventListener("click", (e) => {
+    
+    playRround("rock",getComputerChoice())
+    
+    if(humanScore===computerScore === 5){
+        results.innerHTML = `what a match you both tied`
+    }
+    else if(computerScore === 5 ){
+        results.innerHTML = `hardluck, the computer has beaten you ${humanScore} to a ${computerScore}<br>
+        scores has been reset ready to play again `
+        humanScore = computerScore = 0 
+    } 
+    else if(humanScore === 5 ){
+        results.innerHTML = `congratulations you beat the computer ${humanScore} to a ${computerScore}<br>
+        scores has been reset ready to play again `
+        humanScore = computerScore = 0
+}})
+paper.addEventListener("click", (e) => {
+    
+    playRround("paper",getComputerChoice())
+    if(humanScore===computerScore === 5){
+        results.innerHTML = `what a match you both tied`
+    }
+    else if(computerScore === 5 ){
+        results.innerHTML = `hardluck, the computer has beaten you ${humanScore} to a ${computerScore}<br>
+        scores has been reset ready to play again `
+        humanScore = computerScore = 0 
+    } 
+    else if(humanScore === 5 ){
+        results.innerHTML = `congratulations you beat the computer ${humanScore} to a ${computerScore}<br>
+        scores has been reset ready to play again `
+        humanScore = computerScore = 0
+}
+})
+scissor.addEventListener("click", (e) => {
+    
+    playRround("scissors",getComputerChoice())
+    if(humanScore===computerScore === 5){
+        results.innerHTML = `what a match you both tied`
+    }
+    else if(computerScore === 5 ){
+        results.innerHTML = `hardluck, the computer has beaten you ${computerScore} to a ${humanScore} <br>
+        scores has been reset ready to play again `
+        humanScore = computerScore = 0 
+    } 
+    else if(humanScore === 5 ){
+        results.innerHTML = `congratulations you beat the computer ${humanScore} to a ${computerScore}<br>
+        scores has been reset ready to play again `
+        humanScore = computerScore = 0
+}
+})
+
+
 
 
 //get input from user 
@@ -24,14 +85,7 @@ else return "scissors" ;
 //figure out the winner 
 
 
-   
-let humanSelection = getUserChoice()
-let computerSelection = getComputerChoice()
-function playGame() {
-    let winner = 0 
-    let humanScore = 0 ;
-    let computerScore = 0;
-    function playRround(humanChoice,computerChoice){
+function playRround(humanChoice,computerChoice){
      
     if (humanChoice === "scissors") { 
        switch (computerChoice){
@@ -72,39 +126,33 @@ function playGame() {
             winner = 0;
        }
     }   
-    console.log(winner)
+    
     
 
     if (winner === 1) {
         humanScore++
-        console.log(`You Won, you beat ${computerChoice} `)
+        results.innerHTML = `You Won, you beat ${computerChoice}<br>
+        your score is ${humanScore} computer score is ${computerScore}`
+        
     } 
     else if ( winner === 0 ){
-        console.log('its a tie ')
+        results.innerHTML = `its a tie<br>
+        your score is ${humanScore} computer score is ${computerScore} `
+        
     }
     else {
         computerScore++
-        console.log(`You lost, ${computerChoice}`)
+        results.innerHTML = `You lost, ${computerChoice}<br>
+        your score is ${humanScore} computer score is ${computerScore}`
+        
     }
 
-}    
-    playRround(humanSelection,computerSelection)
-    console.log(`your score is ${humanScore}\ncomputer score is ${computerScore}`)
-    humanSelection = getUserChoice()
-    computerSelection = getComputerChoice()    
-    playRround(humanSelection,computerSelection)
-    console.log(`your score is ${humanScore}\ncomputer score is ${computerScore}`)
-    humanSelection = getUserChoice()
-    computerSelection = getComputerChoice()
-    playRround(humanSelection,computerSelection)
-    console.log(`your score is ${humanScore}\ncomputer score is ${computerScore}`)
-    humanSelection = getUserChoice()
-    computerSelection = getComputerChoice()   
-    playRround(humanSelection,computerSelection)
-    console.log(`your score is ${humanScore}\ncomputer score is ${computerScore}`)
-    humanSelection = getUserChoice()
-    computerSelection = getComputerChoice()
-    playRround(humanSelection,computerSelection)
-    console.log(`your score is ${humanScore}\ncomputer score is ${computerScore}`)}
+}       
 
-playGame()
+function playGame() {
+
+    
+    
+    playRround(humanSelection,computerSelection)
+    console.log(`your score is ${humanScore}\ncomputer score is ${computerScore}`)
+}
